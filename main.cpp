@@ -96,11 +96,13 @@ int main() {
 
             //Player.setInputVar(inputHandler);
 
-            if (inputVar == "n" || "N" || "north" || "North" || "s" || "S" || "south" || "South"
-                || "e" || "E" || "east" || "East" || "w" || "W" || "west" || "West") {
+            if (inputVar == "n" || inputVar == "N" || inputVar == "north" || inputVar == "North" ||
+                inputVar == "s" || inputVar == "S" || inputVar == "south" || inputVar == "South" ||
+                inputVar == "e" || inputVar == "E" || inputVar == "east" || inputVar == "East" ||
+                inputVar == "w" || inputVar == "W" || inputVar == "west" || inputVar == "West") {
 
 
-                if (inputVar == "e" || "E" || "east" || "East") {
+                if (inputVar == "e" || inputVar == "E" || inputVar == "east" || inputVar == "East") {
                     bool didMove = Player.moveEast();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
@@ -125,7 +127,7 @@ int main() {
                         goto here;
                     }
 
-                } else if (inputVar == "s" || "S" || "south" || "South") {
+                } else if (inputVar == "s" || inputVar == "S" || inputVar == "south" ||inputVar == "South") {
                     bool didMove = Player.moveSouth();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
@@ -142,7 +144,7 @@ int main() {
                     }
 
 
-                } else if (inputVar == "n" || "N" || "north" || "North") {
+                } else if (inputVar == "n" || inputVar == "N" || inputVar == "north" || inputVar == "North") {
                     bool didMove = Player.moveNorth(); //get the relevant movement func
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
@@ -159,7 +161,7 @@ int main() {
                         continue; //goes to the top of the loop
                     } //continues to the next logic in the game loop intrinsically
 
-                } else if (inputVar == "w" || "W" || "west" || "West") {
+                } else if (inputVar == "w" || inputVar == "W" || inputVar == "west" || inputVar == "West") {
                     bool didMove = Player.moveWest();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
@@ -177,12 +179,17 @@ int main() {
                 }
             }
                 //quell
-            else if (inputVar == "quell" || "q") {
+            else if (inputVar == "quell" || inputVar == "q") {
+                int i = Player.getPositionI();
+                int j = Player.getPositionJ();
+                int fireStatus = Map[i][j].getFireResource();
+
+
 
 
             }
                 //regen
-            else if (inputVar == "regen" || "r") {
+            else if (inputVar == "regen" || inputVar == "r") {
 
 
             }
