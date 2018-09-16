@@ -103,7 +103,7 @@ int main() {
 
 
                 if (inputVar == "e" || inputVar == "E" || inputVar == "east" || inputVar == "East") {
-                    bool didMove = Player.moveEast();
+                    //bool didMove = Player.moveEast();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
@@ -120,7 +120,7 @@ int main() {
                         goto here;
                     } else {
                         i = i + 1;
-                        Player.setPositionJ(i);
+                        Player.setPositionI(i);
                         cout << fireStatus << endl;
                         cout << i << j << endl;
                         //inputVar Reset
@@ -128,7 +128,7 @@ int main() {
                     }
 
                 } else if (inputVar == "s" || inputVar == "S" || inputVar == "south" ||inputVar == "South") {
-                    bool didMove = Player.moveSouth();
+                    //bool didMove = Player.moveSouth();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
@@ -138,10 +138,10 @@ int main() {
                         continue;
                     }
 
-                    if (!didMove) {
-                        cout << "Please Input a Correct Command" << endl;
-                        continue;
-                    }
+//                    if (!didMove) {
+//                        cout << "Please Input a Correct Command" << endl;
+//                        continue;
+//                    }
 
 
                 } else if (inputVar == "n" || inputVar == "N" || inputVar == "north" || inputVar == "North") {
