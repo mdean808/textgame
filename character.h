@@ -12,6 +12,7 @@ private:
     int positionI;
     int positionJ;
     int waterPoints;
+    string inputVar;
     //int shares;
     bool finished;
     string characterOutput;
@@ -35,6 +36,14 @@ public:
 
     void setWaterPoints(int wp) {
         this->waterPoints = wp;
+    }
+
+    string getInputVar(){
+        return inputVar;
+    }
+
+    void setInputVar(string inpv){
+        this -> inputVar = inpv;
     }
 
 //    int getShares() {
@@ -118,13 +127,13 @@ public:
 
     //constructor:
 
-    Character (int i, int j, int wp, bool fin) {
+    Character (int i, int j, int wp, bool fin, string inpv) {
         //could use setters here instead, but it's not necessary
         this->positionI = i;
         this->positionJ = j;
         this -> waterPoints = wp;
         this -> finished = fin;
-
+        this -> inputVar = inpv;
 
     }
 
