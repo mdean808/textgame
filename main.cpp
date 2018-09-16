@@ -65,7 +65,7 @@ int main() {
         Map[2][4] = W;
     Location X = Location(30, -40, "x", false, "null", false, true);
         Map[3][4] = X;
-    Location Y = Location(30, -40, "x", false, "null", false, true);
+    Location Y = Location(30, -40, "x", false, "null", true, true);
         Map[4][4] = Y;
     //end setting unique locations
 
@@ -244,8 +244,11 @@ int main() {
                 //PRINT THE INTRO
 
             }
+            else if ( inputVar == "search" && (Player.getPositionI() == 4) && (Player.getPositionJ() == 4) ) {
+                cout << "Congrats! You've Rescued the Puppy!" << endl;
+                Player.setFinished(true);
+            }
             //update the state
         }
-
     return 0;
 }
