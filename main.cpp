@@ -72,11 +72,10 @@ int main() {
     //?? Should this be in the loop?
     bool finished = Player.getFinished();
 
-    while (!finished) {
+    here:
+
+    while (!Player.getFinished()) {
         //give the state of the game
-        here:
-
-
 
         string inputVar;
         cout << "  What's your next move?" << endl;
@@ -102,7 +101,7 @@ int main() {
                     }
 
                     if (i == 4) {
-                        cout << "Please Input a Correct Command" << endl;
+                        cout << "Please Input a Correct Command, you are at the edge of the map." << endl;
                         //
                         goto here;
                     }
@@ -131,7 +130,7 @@ int main() {
                     }
 
                     if (j == 4) {
-                        cout << "Please Input a Correct Command" << endl;
+                        cout << "Please Input a Correct Command, you are at the edge of the map." << endl;
                         goto here;
                     }
 
@@ -227,6 +226,8 @@ int main() {
                 int currentWater = Player.getWaterPoints();
                 int newWaterTotal = waterStatus + currentWater;
                 Player.setWaterPoints(newWaterTotal);
+                int wr = 0;
+                Map[i][j].setWaterResource(wr);
 
                 //determine if the player is alive:
                 if (newWaterTotal < 0 ) {
