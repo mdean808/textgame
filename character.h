@@ -17,6 +17,8 @@ private:
     bool finished;
     string characterOutput;
 
+    friend ostream &operator << ( ostream &output, Character &P);
+
 public:
 
     //get the positions
@@ -66,67 +68,6 @@ public:
     void setFinished(bool fin) {
         this -> finished = fin;
     }
-//
-//    //movement functions:
-//
-//    bool moveNorth() {
-//        int j = getPositionJ();
-//        if ( j == 0 ) {
-//            return false;
-//        } else {
-//            //move guy
-//            int jNew = j - 1;
-//            setPositionJ(jNew);
-//            //return to notify state of game
-//            return true;
-//        }
-//    }
-//
-//    bool moveEast(){
-//
-//        int i = getPositionI();
-//        if ( i == 4 ) {
-//            return false;
-//        } else {
-//            //move guy
-//            int iNew = i + 1;
-//            setPositionJ(iNew);
-//            //return to notify state of game
-//            return true;
-//        }
-//
-//    }
-//
-//    bool moveSouth() {
-//        int j = getPositionJ();
-//        if ( j == 4 ) {
-//            return false;
-//        } else {
-//            //move guy
-//            int jNew = j + 1;
-//            setPositionJ(jNew);
-//            //return to notify state of game
-//            return true;
-//        }
-//
-//    }
-//
-//    bool moveWest() {
-//
-//        int i = getPositionI();
-//        if ( i == 0 ) {
-//            return false;
-//        } else {
-//            //move guy
-//            int iNew = i - 1;
-//            setPositionJ(iNew);
-//            //return to notify state of game
-//            return true;
-//        }
-//
-//    }
-
-    //end movement functions
 
 
 
@@ -141,14 +82,16 @@ public:
         this -> inputVar = inpv;
 
     }
-
-
-
 };
 
-
-
-
+ostream &operator << ( ostream &output, Character &P) { //if operator "<<", referencing this class, then do:
+    int i = P.getPositionI();
+    int j = P.getPositionJ();
+    int wp = P.getWaterPoints();
+    output << "Score & Current Water Available:  "<< wp << std::endl << "Current Location [i][j]: " << "[" << i << "]" <<
+           "["<< j << "]" << std::endl;
+    return output;
+}
 
 
 

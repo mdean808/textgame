@@ -2,14 +2,16 @@
 #include <string>
 #include "libs/character.h"
 #include "libs/location.h"
-
 using namespace std;
 
-bool getFireStat();
-
-string makeInputVarNew();
+//string showSate();
 
 int main() {
+
+    //helper functions
+
+
+    //PRINT INSTRUCTIONS HERE
 
     Character Player = Character(0, 0, 10, false, "null");
 
@@ -65,8 +67,6 @@ int main() {
         Map[3][4] = X;
     Location Y = Location(30, -40, "x", false, "null", false, true);
         Map[4][4] = Y;
-
-
     //end setting unique locations
 
     //?? Should this be in the loop?
@@ -75,26 +75,14 @@ int main() {
     while (!finished) {
         //give the state of the game
         here:
-        //bool isDead = Player.getWaterPoints();
 
-        //get input from the user
-        //string inputVar = "null";
+
+
         string inputVar;
         cout << "  What's your next move?" << endl;
         cin >> inputVar;
 
         //determine if the command is a movement
-//
-//        if () {
-//
-//        }
-        //while (Player.getInputVar() == "null") {
-
-//            cout << "What's your next move?" << endl;
-//            string inputHandler;
-//            cin >> inputHandler;
-
-            //Player.setInputVar(inputHandler);
 
             if (inputVar == "n" || inputVar == "N" || inputVar == "north" || inputVar == "North" ||
                 inputVar == "s" || inputVar == "S" || inputVar == "south" || inputVar == "South" ||
@@ -107,23 +95,27 @@ int main() {
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
 
+                    int wp = Player.getWaterPoints();
+                    if (wp < 0 ) {
+                        cout << "You're overwhelmed by flames! Try playing again." << endl;
+                        Player.setFinished(true);
+                    }
+
                     if (i == 4) {
                         cout << "Please Input a Correct Command" << endl;
-
+                        //
                         goto here;
                     }
 
                     if (fireStatus < 0) {
                         cout << "Put out fire first!" << endl;
-
+                        //
                         goto here;
                     }
                     else {
                         i = i + 1;
                         Player.setPositionI(i);
-                        cout << fireStatus << endl;
-                        cout << Player.getPositionI() << endl;
-                        cout << Player.getPositionJ() << endl;
+                        cout << Player << endl; // insertion operator
                         goto here;
                     }
 
@@ -131,6 +123,12 @@ int main() {
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
+
+                    int wp = Player.getWaterPoints();
+                    if (wp < 0 ) {
+                        cout << "You're overwhelmed by flames! Try playing again." << endl;
+                        Player.setFinished(true);
+                    }
 
                     if (j == 4) {
                         cout << "Please Input a Correct Command" << endl;
@@ -144,9 +142,7 @@ int main() {
                     else {
                         j = j + 1;
                         Player.setPositionJ(j);
-                        cout << "There is: " << fireStatus << "fire here!" << endl;
-                        cout << Player.getPositionI() << endl;
-                        cout << Player.getPositionJ() << endl;
+                        cout << Player << endl;
                         goto here;
                     }
                 }
@@ -155,6 +151,12 @@ int main() {
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
+
+                    int wp = Player.getWaterPoints();
+                    if (wp < 0 ) {
+                        cout << "You're overwhelmed by flames! Try playing again." << endl;
+                        Player.setFinished(true);
+                    }
 
                     if (j == 0){
                         cout << "Please Input a Correct Command" << endl;
@@ -170,9 +172,7 @@ int main() {
                     else {
                         j = j - 1;
                         Player.setPositionJ(j);
-                        cout << "There is: " << fireStatus << "fire here!" << endl;
-                        cout << Player.getPositionI() << endl;
-                        cout << Player.getPositionJ() << endl;
+                        cout << Player << endl;
                         goto here;
                     }
                 }
@@ -181,6 +181,12 @@ int main() {
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
+
+                    int wp = Player.getWaterPoints();
+                    if (wp < 0 ) {
+                        cout << "You're overwhelmed by flames! Try playing again." << endl;
+                        Player.setFinished(true);
+                    }
 
                     if (i == 0){
                         cout << "Please Input a Correct Command" << endl;
@@ -194,9 +200,7 @@ int main() {
                     else {
                         i = i - 1;
                         Player.setPositionI(i);
-                        cout << "There is: " << fireStatus << " fire here!" << endl;
-                        cout << Player.getPositionI() << endl;
-                        cout << Player.getPositionJ() << endl;
+                        cout << Player << endl;
                         goto here;
                     }
                 }
@@ -213,6 +217,7 @@ int main() {
                 Player.setWaterPoints(wp);
                 int fp = 0; //is always going to be zero after using waterpoints
                 Map[i][j].setFireResource(fp);
+                cout << Player << endl;
             }
                 //regen
             else if (inputVar == "regen" || inputVar == "r") {
@@ -222,11 +227,24 @@ int main() {
                 int currentWater = Player.getWaterPoints();
                 int newWaterTotal = waterStatus + currentWater;
                 Player.setWaterPoints(newWaterTotal);
+
+                //determine if the player is alive:
+                if (newWaterTotal < 0 ) {
+                    cout << "You're overwhelmed by flames!" << endl;
+                    Player.setFinished(true);
+                }
+                cout << Player << endl;
             }
-            //determine how to handle the output
-            // {movement handling will include the state }
+
+            else if (inputVar == "exit" || inputVar == "stop") {
+                cout << "Thanks for Playing" <<  endl;
+                Player.setFinished(true);
+            } else if (inputVar == "help") {
+                //PRINT THE INTRO
+
+            }
             //update the state
         }
-   // }
+
     return 0;
 }
