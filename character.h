@@ -19,8 +19,13 @@ private:
 
 public:
 
-    int getPositionI() { return positionI;}
-    int getPositionJ() {return positionJ;}
+    //get the positions
+    int getPositionI() {
+        return positionI;
+    }
+    int getPositionJ() {
+        return positionJ;
+    }
 
     void setPositionI(int i) {
         this->positionI = i;
@@ -61,65 +66,65 @@ public:
     void setFinished(bool fin) {
         this -> finished = fin;
     }
-
-    //movement functions:
-
-    bool moveNorth() {
-        int j = getPositionJ();
-        if ( j == 0 ) {
-            return false;
-        } else {
-            //move guy
-            int jNew = j - 1;
-            setPositionJ(jNew);
-            //return to notify state of game
-            return true;
-        }
-    }
-
-    bool moveEast(){
-
-        int i = getPositionI();
-        if ( i == 4 ) {
-            return false;
-        } else {
-            //move guy
-            int iNew = i + 1;
-            setPositionJ(iNew);
-            //return to notify state of game
-            return true;
-        }
-
-    }
-
-    bool moveSouth() {
-        int j = getPositionJ();
-        if ( j == 4 ) {
-            return false;
-        } else {
-            //move guy
-            int jNew = j + 1;
-            setPositionJ(jNew);
-            //return to notify state of game
-            return true;
-        }
-
-    }
-
-    bool moveWest() {
-
-        int i = getPositionI();
-        if ( i == 0 ) {
-            return false;
-        } else {
-            //move guy
-            int iNew = i - 1;
-            setPositionJ(iNew);
-            //return to notify state of game
-            return true;
-        }
-
-    }
+//
+//    //movement functions:
+//
+//    bool moveNorth() {
+//        int j = getPositionJ();
+//        if ( j == 0 ) {
+//            return false;
+//        } else {
+//            //move guy
+//            int jNew = j - 1;
+//            setPositionJ(jNew);
+//            //return to notify state of game
+//            return true;
+//        }
+//    }
+//
+//    bool moveEast(){
+//
+//        int i = getPositionI();
+//        if ( i == 4 ) {
+//            return false;
+//        } else {
+//            //move guy
+//            int iNew = i + 1;
+//            setPositionJ(iNew);
+//            //return to notify state of game
+//            return true;
+//        }
+//
+//    }
+//
+//    bool moveSouth() {
+//        int j = getPositionJ();
+//        if ( j == 4 ) {
+//            return false;
+//        } else {
+//            //move guy
+//            int jNew = j + 1;
+//            setPositionJ(jNew);
+//            //return to notify state of game
+//            return true;
+//        }
+//
+//    }
+//
+//    bool moveWest() {
+//
+//        int i = getPositionI();
+//        if ( i == 0 ) {
+//            return false;
+//        } else {
+//            //move guy
+//            int iNew = i - 1;
+//            setPositionJ(iNew);
+//            //return to notify state of game
+//            return true;
+//        }
+//
+//    }
 
     //end movement functions
 

@@ -80,7 +80,7 @@ int main() {
         //get input from the user
         //string inputVar = "null";
         string inputVar;
-        cout << "What's your next move?" << endl;
+        cout << "  What's your next move?" << endl;
         cin >> inputVar;
 
         //determine if the command is a movement
@@ -103,52 +103,63 @@ int main() {
 
 
                 if (inputVar == "e" || inputVar == "E" || inputVar == "east" || inputVar == "East") {
-                    //bool didMove = Player.moveEast();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
 
                     if (i == 4) {
                         cout << "Please Input a Correct Command" << endl;
-                        //inputVar reset
+
                         goto here;
                     }
 
                     if (fireStatus < 0) {
                         cout << "Put out fire first!" << endl;
-                        //inputVar Reset
+
                         goto here;
-                    } else {
+                    }
+                    else {
                         i = i + 1;
                         Player.setPositionI(i);
                         cout << fireStatus << endl;
-                        cout << i << j << endl;
-                        //inputVar Reset
+                        cout << Player.getPositionI() << endl;
+                        cout << Player.getPositionJ() << endl;
                         goto here;
                     }
 
                 } else if (inputVar == "s" || inputVar == "S" || inputVar == "south" ||inputVar == "South") {
-                    //bool didMove = Player.moveSouth();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
+
+                    if (j == 4) {
+                        cout << "Please Input a Correct Command" << endl;
+                        goto here;
+                    }
 
                     if (fireStatus < 0) {
                         cout << "Put out fire first!" << endl;
-                        continue;
+                        goto here;
                     }
-
-//                    if (!didMove) {
-//                        cout << "Please Input a Correct Command" << endl;
-//                        continue;
-//                    }
-
-
-                } else if (inputVar == "n" || inputVar == "N" || inputVar == "north" || inputVar == "North") {
-                    bool didMove = Player.moveNorth(); //get the relevant movement func
+                    else {
+                        j = j + 1;
+                        Player.setPositionJ(j);
+                        cout << "There is: " << fireStatus << "fire here!" << endl;
+                        cout << Player.getPositionI() << endl;
+                        cout << Player.getPositionJ() << endl;
+                        goto here;
+                    }
+                }
+                else if (inputVar == "n" || inputVar == "N" || inputVar == "north" || inputVar == "North") {
+                    //bool didMove = Player.moveNorth(); //get the relevant movement func
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
+
+                    if (j == 0){
+                        cout << "Please Input a Correct Command" << endl;
+                        goto here;
+                    }
 
                     if (fireStatus < 0) {
                         cout << "Put out fire first!" << endl;
@@ -156,25 +167,37 @@ int main() {
                         goto here;
                     }
 
-                    if (!didMove) { //same as "didMove == false"
-                        cout << "Please Input a Correct Command" << endl;
-                        continue; //goes to the top of the loop
-                    } //continues to the next logic in the game loop intrinsically
-
-                } else if (inputVar == "w" || inputVar == "W" || inputVar == "west" || inputVar == "West") {
-                    bool didMove = Player.moveWest();
+                    else {
+                        j = j - 1;
+                        Player.setPositionJ(j);
+                        cout << "There is: " << fireStatus << "fire here!" << endl;
+                        cout << Player.getPositionI() << endl;
+                        cout << Player.getPositionJ() << endl;
+                        goto here;
+                    }
+                }
+                else if (inputVar == "w" || inputVar == "W" || inputVar == "west" || inputVar == "West") {
+                    //bool didMove = Player.moveWest();
                     int i = Player.getPositionI();
                     int j = Player.getPositionJ();
                     int fireStatus = Map[i][j].getFireResource();
+
+                    if (i == 0){
+                        cout << "Please Input a Correct Command" << endl;
+                        goto here;
+                    }
 
                     if (fireStatus < 0) {
                         cout << "Put out fire first!" << endl;
                         continue;
                     }
-
-                    if (!didMove) {
-                        cout << "Please Input a Correct Command" << endl;
-                        continue;
+                    else {
+                        i = i - 1;
+                        Player.setPositionI(i);
+                        cout << "There is: " << fireStatus << " fire here!" << endl;
+                        cout << Player.getPositionI() << endl;
+                        cout << Player.getPositionJ() << endl;
+                        goto here;
                     }
                 }
             }
@@ -183,20 +206,24 @@ int main() {
                 int i = Player.getPositionI();
                 int j = Player.getPositionJ();
                 int fireStatus = Map[i][j].getFireResource();
-
-
-
-
+                //int waterStatus = Map[i][j].getWaterResource();
+                int waterStatus = Player.getWaterPoints();
+                int wp = waterStatus + fireStatus;
+                //check if player is still alive?
+                Player.setWaterPoints(wp);
+                int fp = 0; //is always going to be zero after using waterpoints
+                Map[i][j].setFireResource(fp);
             }
                 //regen
             else if (inputVar == "regen" || inputVar == "r") {
-
-
+                int i = Player.getPositionI();
+                int j = Player.getPositionJ();
+                int waterStatus = Map[i][j].getWaterResource();
+                int currentWater = Player.getWaterPoints();
+                int newWaterTotal = waterStatus + currentWater;
+                Player.setWaterPoints(newWaterTotal);
             }
             //determine how to handle the output
-
-
-
             // {movement handling will include the state }
             //update the state
         }
