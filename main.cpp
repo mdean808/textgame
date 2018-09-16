@@ -13,7 +13,7 @@ int main() {
 
     //PRINT INSTRUCTIONS HERE
 
-    Character Player = Character(0, 0, 10, false, "null");
+    Character Player = Character(0, 0, 0, false, "null");
 
     //set unique location inputs
     Location Map[5][5];
